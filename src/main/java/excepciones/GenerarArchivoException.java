@@ -1,6 +1,8 @@
 package excepciones;
 
-public class GenerarArchivoException extends Exception {
+import java.io.IOException;
+
+public class GenerarArchivoException extends IOException {
 
 	/**
 	 * 
