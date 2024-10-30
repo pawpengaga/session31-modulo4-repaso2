@@ -66,7 +66,7 @@ public class DoctorServiceTest {
     docService.agregarDoctor(doc);
 
     docService.eliminarDoctor(4);
-    assertNull(doc.getIdDoc());
+    assertNull(docService.obteneDoctor(4));
   }
 
 }
