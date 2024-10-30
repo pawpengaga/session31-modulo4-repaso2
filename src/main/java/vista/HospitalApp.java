@@ -68,7 +68,15 @@ public class HospitalApp {
           myscan.nextLine();
           String nombreDocDos = myscan.nextLine();
 
+          System.out.println("Ingrese el ID de la especialidad");
+          especialidadService.listarEspecialidades();
+          int idEspe = myscan.nextInt();
+          myscan.nextLine();
+
+          Especialidad especc = especialidadService.obtenerEspecialidad(idEspe);
+
           Doctor nuevoDoc = new Doctor(idDocDos, nombreDocDos);
+          nuevoDoc.agregarEspecialidad(especc);
           doctorService.agregarDoctor(nuevoDoc);
 
           break;
@@ -93,6 +101,7 @@ public class HospitalApp {
         case 5:
           System.out.println("Saliendo...");
           salir = true;
+          break;
         
         default:
           System.out.println("Opcion no valida!!!");
