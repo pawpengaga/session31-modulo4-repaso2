@@ -2,11 +2,11 @@ package vista;
 
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.Collection;
 
 import excepciones.GenerarArchivoException;
 import interfaces.IDoctor;
 import interfaces.IEspecialidad;
-import interfaces.IPaciente;
 import modelos.Doctor;
 import modelos.Especialidad;
 import modelos.Paciente;
@@ -30,6 +30,8 @@ public class HospitalApp {
     Scanner myscan = new Scanner(System.in);
     boolean salir = false;
 
+    System.out.println("---------------------------------------------------\n");
+
     do {
       System.out.println("1. Agregar Paciente");
       System.out.println("2. Agregar Doctor");
@@ -51,7 +53,7 @@ public class HospitalApp {
           String nombre = myscan.nextLine();
 
           System.out.println("Id del doctor");
-          doctorService.listarDoctores();
+          listarServicios(doctorService.listarDoctores());;
           int idDoc = myscan.nextInt();
           myscan.nextLine();
 
@@ -69,7 +71,7 @@ public class HospitalApp {
           String nombreDocDos = myscan.nextLine();
 
           System.out.println("Ingrese el ID de la especialidad");
-          especialidadService.listarEspecialidades();
+          listarServicios(especialidadService.listarEspecialidades()); // Es generico ahora eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
           int idEspe = myscan.nextInt();
           myscan.nextLine();
 
@@ -111,5 +113,15 @@ public class HospitalApp {
 
     myscan.close();
 
+  }
+
+  /**
+   * Listado para todo tipo de Collection entrantes eeeeeeeeeeeeeeeeeeeee
+   * @param <T> Generico para las clases dentro de modelo
+   * @param servicio_in Coleccion generica
+   * 
+   */
+  public static <T> void listarServicios(Collection<T> servicio_in){
+    servicio_in.forEach(System.out::println);
   }
 }
