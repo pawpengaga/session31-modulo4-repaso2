@@ -2,6 +2,7 @@ package pruebas;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -51,10 +52,30 @@ public class EspecialidadServiceTest {
     assertEquals("Pediatria", buscado.getNombre());
     assertEquals("Pediatria", espService.obtenerEspecialidad(2).getNombre());
 
-
   }
 
-  
+  @Test
+  @DisplayName("Test actualiza especialidad")
+  public void testActualizaEspecialidad(){
+    Especialidad esp = new Especialidad(3, "Neurologia");
+    espService.agregarEspecialidad(esp);
 
+    // Crear un objeto actualizado
+    Especialidad actualizada = new Especialidad(3, "Psicologia");
+    espService.actualizarEspecialidad(actualizada);
+
+    assertEquals("Psicologia", espService.obtenerEspecialidad(3).getNombre());
+    
+  }
+
+  @Test
+  @DisplayName("Elimina una especialidad")
+  public void testEliminaEspecialidad(){
+    Especialidad esp = new Especialidad(4, "Kinesiologia");
+    espService.agregarEspecialidad(esp);
+
+    espService.eliminarEspecialidad(4);
+    assertNull(espService.obtenerEspecialidad(4));
+  }
 
 }
